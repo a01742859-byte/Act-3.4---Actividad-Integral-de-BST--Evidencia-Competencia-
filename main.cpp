@@ -10,6 +10,7 @@
 #include <algorithm>
 #include "Bitacora.h"
 #include "ArbolBST.h"
+#include "Ordenamiento.h"
 
 
 int main() {
@@ -26,13 +27,9 @@ int main() {
 
     std::ofstream archivOrd("bitacoraOrdenadaIP-Eq4-BST.txt");
 
-    for(size_t i{0}; i < bitacora.size(); i++) {
-        for(size_t j{0}; j + 1 < bitacora.size() - i; j++) {
-            if(*bitacora[j + 1] < *bitacora[j]) {
-                std::swap(bitacora[j], bitacora[j + 1]);
-            }
-        }
-    }
+    Ordenamiento ordenar;
+    ordenar.ordenarMerge(bitacora);
+    
 
     for(size_t i{0}; i < bitacora.size(); i++) {
         archivOrd << bitacora[i]->getInfo() << std::endl;
@@ -58,7 +55,6 @@ int main() {
     
 
     arbol.imprimirMaximos(NumerodeIps);
-    arbol.imprimirPorNivel();
 
 
     for(size_t i = 0; i < bitacora.size(); i++) {
